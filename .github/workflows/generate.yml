@@ -36,7 +36,7 @@ jobs:
         id: changes
         continue-on-error: true
         run: |
-          set -x
+          set -x +e
           git diff --quiet
           echo ::set-output name=CHANGED::$?
 
