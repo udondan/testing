@@ -34,7 +34,6 @@ jobs:
 
       - name: Check for changes
         id: changes
-        uses: actions/checkout@v1
         run: |
           set -x +e
           git diff --quiet
