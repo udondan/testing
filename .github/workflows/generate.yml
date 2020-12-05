@@ -1,0 +1,40 @@
+---
+name: Generate Code from AWS documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: make command to run
+        required: true
+        default: generate
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    container: ubuntu:18.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup git
+        run: |
+          set -x
+          apt update
+          apt-get install -y git
+          git config --local user.email "deemes79@googlemail.com"
+          git config --local user.name "udondan"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          set -x
+          git diff --quiet
+          echo ::set-output name=CHANGED::$?
+
+      - name: TESTING
+        run: echo ${{ steps.changes.outputs.CHANGED }}
