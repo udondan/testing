@@ -41,4 +41,4 @@ jobs:
 
       - name: Do something if CHANGED
         run: echo CHANGE DETECTED
-        if: ${{ steps.changes.outputs.CHANGED == "1" }}
+        if: steps.changes.outputs.CHANGED == "1"
