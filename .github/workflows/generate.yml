@@ -38,3 +38,7 @@ jobs:
 
       - name: TESTING
         run: echo ${{ steps.changes.outputs.CHANGED }}
+
+      - name: Do something if CHANGED
+        run: echo CHANGE DETECTED
+        if: ${{ steps.changes.outputs.CHANGED == "1" }}
