@@ -1,5 +1,5 @@
 ---
-name: Generate Code from AWS documentation
+name: Testing
 
 on:
   workflow_dispatch:
@@ -34,6 +34,7 @@ jobs:
 
       - name: Check for changes
         id: changes
+        continue-on-error: true
         run: |
           set -x
           git diff --quiet
